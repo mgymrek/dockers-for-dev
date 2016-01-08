@@ -1,0 +1,14 @@
+FROM mgymrek/docker-basset
+MAINTAINER Melissa Gymrek <mgymrek@mit.edu>
+
+# Install my github version
+RUN rm -rf /home/workspace/Basset
+RUN git clone https://github.com/mgymrek/Basset.git /home/workspace/Basset
+WORKDIR /home/workspace/Basset
+RUN git remote -v add upstream https://github.com/davek44/Basset.git
+RUN git pull
+RUN git fetch upstream
+
+# Install dev tools
+RUN apt-get install -y -q emacs
+
